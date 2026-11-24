@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal PPKI SK Tanjong Bidara</title>
+<style>
+:root{--navy:#31536b;--blue:#6fa6c5;--teal:#78b9a5;--gold:#f2cf72;--ink:#33495a;--muted:#718391;--bg:#f6fafb;--line:#e5edf0;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.layout{display:flex;min-height:100vh}.sidebar{width:258px;background:#dcecf3;color:#31536b;padding:24px 16px;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 25px;border-bottom:1px solid #bfd5df}
+.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#f3c968,#f39b5b);display:grid;place-items:center;font-size:23px}
+.brand strong{display:block;font-size:14px;line-height:1.35}.brand small{color:#6f8998;font-size:11px}
+.nav-label{font-size:10px;letter-spacing:1.5px;color:#7893a2;margin:25px 10px 9px;font-weight:700}
+.nav a{display:flex;gap:12px;align-items:center;color:#456477;text-decoration:none;padding:11px 12px;border-radius:9px;margin:3px 0;font-size:13px;cursor:pointer}
+.nav a:hover,.nav a.active{background:#c5e1e7;color:#294f65}.nav .ico{width:20px;text-align:center;font-size:16px}
+.side-foot{margin:35px 8px 0;padding-top:15px;border-top:1px solid #bfd5df;color:#6f8998;font-size:11px;line-height:1.6}
+main{flex:1;min-width:0}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.crumb{font-size:12px;color:var(--muted)}.topright{font-size:12px;color:var(--muted)}
+.content{max-width:1250px;margin:auto;padding:30px 32px 50px}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--teal);text-transform:uppercase}
+h1{font-size:29px;margin:8px 0 7px;color:var(--navy);letter-spacing:-.6px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 24px}
+.hero{background:linear-gradient(115deg,#b9dce9,#c7e7d8);border-radius:20px;padding:27px 30px;color:#31536b;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:230px;height:230px;border:35px solid #ffffff55;border-radius:50%;right:8%;top:-105px}
+.hero h2{font-size:23px;margin:7px 0}.hero p{margin:0;color:#4e7181;font-size:13px;max-width:570px;line-height:1.6}
+.hero .tag{font-size:11px;color:#80652b;font-weight:700;letter-spacing:1px}
+.hero-art{font-size:58px;z-index:1;padding:5px 22px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:18px 0}
+.stat,.panel,.quick{background:#fff;border:1px solid var(--line);border-radius:15px}
+.stat{padding:17px}.stat .label{font-size:11px;color:var(--muted)}.stat .num{font-size:26px;font-weight:750;color:var(--navy);margin:8px 0 4px}.stat .note{font-size:10px;color:var(--teal)}
+.columns{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:16px}
+.panel{padding:20px}.panel h3{font-size:15px;margin:0 0 5px;color:var(--navy)}.panel .hint{font-size:11px;color:var(--muted);margin-bottom:16px}
+.progress-row{margin:14px 0}.progress-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}.bar{height:8px;border-radius:10px;background:#edf2f4;overflow:hidden}.fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#78b9a5,#a9d7c2)}
+.links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.quick{padding:14px;text-decoration:none;color:var(--ink);display:block}.quick:hover{border-color:#8bbeb8;background:#f8fcfb}.quick b{font-size:12px;display:block;margin:7px 0 3px}.quick span{font-size:11px;color:var(--muted)}.quick i{font-style:normal;font-size:20px}
+.notice{padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}.notice:last-child{border:0}.notice small{display:block;color:var(--muted);margin-top:5px}
+.section{display:none}.section.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.info{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px}.info .emoji{font-size:26px}.info h3{font-size:14px;color:var(--navy);margin:10px 0 6px}.info p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.placeholder{background:#fbfdfd;border:1px dashed #cbd8df;border-radius:10px;padding:18px;color:#728494;font-size:12px;line-height:1.7}
+footer{text-align:center;color:#8997a3;font-size:10px;padding:24px}
+.mobile{display:none}
+@media(max-width:900px){.sidebar{width:220px}.grid{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.layout{display:block}.sidebar{width:100%;padding:13px 14px}.brand{padding-bottom:12px}.nav-label,.side-foot{display:none}.nav{display:flex;overflow:auto;gap:5px;padding-top:10px}.nav a{white-space:nowrap;padding:9px;font-size:11px}.topbar{height:48px;padding:0 16px}.content{padding:22px 15px}.hero{padding:22px}.hero-art{font-size:40px;padding:0}.hero h2{font-size:19px}h1{font-size:24px}.cards{grid-template-columns:1fr}.grid{gap:9px}.stat{padding:13px}.stat .num{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+ <div class="brand"><div class="logo">🌟</div><div><strong>PORTAL PPKI<br>SK TANJONG BIDARA</strong><small>Potensi • Berdikari • Cemerlang</small></div></div>
+ <div class="nav-label">MENU UTAMA</div>
+ <nav class="nav">
+  <a class="active" onclick="show('dashboard',this)"><span class="ico">▦</span> Dashboard</a>
+  <a onclick="show('profil',this)"><span class="ico">🏫</span> Profil PPKI</a>
+  <a onclick="show('warga',this)"><span class="ico">👩‍🏫</span> Warga PPKI</a>
+  <a onclick="show('akademik',this)"><span class="ico">📚</span> Akademik</a>
+  <a onclick="show('aktiviti',this)"><span class="ico">🎨</span> Aktiviti & Program</a>
+  <a onclick="show('pencapaian',this)"><span class="ico">🏆</span> Pencapaian Murid</a>
+  <a onclick="show('galeri',this)"><span class="ico">📷</span> Galeri</a>
+  <a onclick="show('maklumat',this)"><span class="ico">📢</span> Maklumat Ibu Bapa</a>
+  <a onclick="show('hubungi',this)"><span class="ico">☎️</span> Hubungi Kami</a>
+ </nav>
+ <div class="side-foot">SEKOLAH KEBANGSAAN TANJONG BIDARA<br>Portal Program Pendidikan Khas Integrasi<br>© 2026</div>
+</aside>
+<main>
+ <div class="topbar"><div class="crumb">SK TANJONG BIDARA / <b>PORTAL PPKI</b></div><div class="topright">Portal Informasi & Pengurusan</div></div>
+ <div class="content">
+  <section id="dashboard" class="section active">
+   <div class="eyebrow">PROGRAM PENDIDIKAN KHAS INTEGRASI</div><h1>Selamat datang ke Portal PPKI.</h1><p class="sub">Pusat informasi, aktiviti dan perkembangan murid Pendidikan Khas SK Tanjong Bidara.</p>
+   <div class="hero"><div><div class="tag">SETIAP ANAK ISTIMEWA, SETIAP ANAK BERHARGA</div><h2>Bersama Membina Potensi</h2><p>Menyediakan ruang pembelajaran yang positif, menyeronokkan dan bermakna agar setiap murid dapat berkembang mengikut kebolehan masing-masing.</p></div><div class="hero-art">🌈 🧩</div></div>
+   <div class="grid">
+    <div class="stat"><div class="label">PROGRAM</div><div class="num">PPKI</div><div class="note">Pendidikan khas integrasi</div></div>
+    <div class="stat"><div class="label">FOKUS UTAMA</div><div class="num">3</div><div class="note">Akademik • Sahsiah • Kemahiran</div></div>
+    <div class="stat"><div class="label">TAHUN</div><div class="num">2026</div><div class="note">Maklumat dan aktiviti semasa</div></div>
+    <div class="stat"><div class="label">SLOGAN</div><div class="num">Boleh!</div><div class="note">Potensi diraikan bersama</div></div>
+   </div>
+   <div class="columns">
+    <div class="panel"><h3>Fokus pembangunan murid</h3><div class="hint">Bidang utama dalam pembelajaran dan kehidupan harian</div>
+     <div class="progress-row"><div class="progress-top"><span>Pengurusan diri & berdikari</span><b>Fokus</b></div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+     <div class="progress-row"><div class="progress-top"><span>Komunikasi & interaksi</span><b>Fokus</b></div><div class="bar"><div class="fill" style="width:82%"></div></div></div>
+     <div class="progress-row"><div class="progress-top"><span>Akademik & literasi</span><b>Fokus</b></div><div class="bar"><div class="fill" style="width:76%"></div></div></div>
+     <div class="progress-row"><div class="progress-top"><span>Kemahiran sosial & motor halus</span><b>Fokus</b></div><div class="bar"><div class="fill" style="width:86%"></div></div></div>
+     <div class="hint">Paparan ini ialah bidang fokus, bukan skor penilaian murid.</div>
+    </div>
+    <div class="panel"><h3>Akses pantas</h3><div class="hint">Maklumat yang sering diperlukan</div><div class="links">
+     <a class="quick" onclick="show('profil')"><i>🏫</i><b>Kenali PPKI</b><span>Profil dan hala tuju</span></a>
+     <a class="quick" onclick="show('aktiviti')"><i>🗓️</i><b>Program</b><span>Aktiviti sekolah</span></a>
+     <a class="quick" onclick="show('galeri')"><i>📸</i><b>Galeri</b><span>Foto aktiviti</span></a>
+     <a class="quick" onclick="show('maklumat')"><i>📌</i><b>Hebahan</b><span>Info ibu bapa</span></a>
+    </div></div>
+   </div>
+   <div class="panel" style="margin-top:16px"><h3>Pengumuman terkini</h3><div class="notice">Selamat datang ke Portal PPKI SK Tanjong Bidara.<small>Ruang ini boleh dikemaskini dengan hebahan rasmi sekolah.</small></div><div class="notice">Jadual aktiviti dan program akan dikongsikan di sini.<small>Sila rujuk makluman daripada pihak sekolah.</small></div></div>
+  </section>
+  <section id="profil" class="section"><div class="eyebrow">MENGENALI KAMI</div><h1>Profil PPKI</h1><p class="sub">Pengenalan dan hala tuju Program Pendidikan Khas Integrasi.</p><div class="cards">
+   <div class="info"><div class="emoji">🏫</div><h3>Pengenalan</h3><p>Program Pendidikan Khas Integrasi SK Tanjong Bidara menyediakan pendidikan dan sokongan pembelajaran mengikut keperluan serta potensi murid.</p></div>
+   <div class="info"><div class="emoji">🎯</div><h3>Matlamat</h3><p>Memperkembangkan potensi murid secara menyeluruh melalui pembelajaran, kemahiran kendiri, komunikasi dan interaksi sosial.</p></div>
+   <div class="info"><div class="emoji">💚</div><h3>Falsafah</h3><p>Setiap murid mempunyai kebolehan dan potensi tersendiri yang wajar dihargai, dibimbing dan diperkembangkan.</p></div>
+  </div><div class="panel" style="margin-top:15px"><h3>Visi, misi dan slogan sekolah</h3><div class="placeholder">Masukkan visi dan misi rasmi sekolah serta slogan rasmi PPKI di ruangan ini.</div></div></section>
+  <section id="warga" class="section"><div class="eyebrow">PASUKAN KAMI</div><h1>Warga PPKI</h1><p class="sub">Guru dan Pembantu Pengurusan Murid yang bersama-sama menyokong perkembangan murid.</p><div class="placeholder">Ruang untuk gambar, nama, jawatan dan peranan Guru Penolong Kanan Pendidikan Khas (jika berkenaan), guru-guru PPKI serta Pembantu Pengurusan Murid. Sila masukkan nama dan gambar yang telah mendapat kebenaran.</div></section>
+  <section id="akademik" class="section"><div class="eyebrow">PEMBELAJARAN</div><h1>Akademik & Kemahiran</h1><p class="sub">Pembelajaran berfokus kepada kebolehan, keperluan dan perkembangan individu murid.</p><div class="cards">
+   <div class="info"><div class="emoji">🔤</div><h3>Bahasa & komunikasi</h3><p>Literasi, kemahiran bertutur, memahami arahan dan komunikasi fungsional.</p></div>
+   <div class="info"><div class="emoji">🔢</div><h3>Matematik</h3><p>Konsep nombor, operasi asas dan aplikasi matematik dalam kehidupan harian.</p></div>
+   <div class="info"><div class="emoji">🧼</div><h3>Pengurusan diri</h3><p>Kebersihan diri, keselamatan, pemakanan dan kemahiran berdikari.</p></div>
+   <div class="info"><div class="emoji">✂️</div><h3>Motor halus & manipulatif</h3><p>Aktiviti koordinasi tangan-mata, kreativiti dan penggunaan alatan.</p></div>
+   <div class="info"><div class="emoji">🌱</div><h3>Pra-vokasional</h3><p>Aktiviti asas kemahiran kerja, kebun, kraf dan tugasan mudah.</p></div>
+   <div class="info"><div class="emoji">🤝</div><h3>Sosial & emosi</h3><p>Interaksi, pengurusan emosi, giliran dan kerjasama.</p></div>
+  </div></section>
+  <section id="aktiviti" class="section"><div class="eyebrow">KALENDAR & DOKUMENTASI</div><h1>Aktiviti dan Program</h1><p class="sub">Sorotan program, sambutan, lawatan dan aktiviti pembelajaran PPKI.</p><div class="placeholder">Tambahkan senarai program berserta tarikh, penerangan ringkas dan gambar. Contoh: Sambutan Hari Kanak-kanak, aktiviti kebun, sukaneka, lawatan sambil belajar dan program bersama komuniti.</div></section>
+  <section id="pencapaian" class="section"><div class="eyebrow">KEJAYAAN KAMI</div><h1>Pencapaian Murid</h1><p class="sub">Mengiktiraf usaha, kemajuan dan kejayaan setiap murid.</p><div class="placeholder">Masukkan pencapaian murid dalam bidang akademik, sukan, seni, kemahiran dan pertandingan. Paparkan nama, program, tahun dan gambar dengan kebenaran yang berkaitan.</div></section>
+  <section id="galeri" class="section"><div class="eyebrow">KENANGAN BERSAMA</div><h1>Galeri PPKI</h1><p class="sub">Koleksi foto aktiviti dan pengalaman pembelajaran murid.</p><div class="placeholder">Ruang galeri foto. Muat naik gambar aktiviti PPKI yang sesuai dan pastikan kebenaran penggunaan gambar murid diperoleh.</div></section>
+  <section id="maklumat" class="section"><div class="eyebrow">UNTUK IBU BAPA & PENJAGA</div><h1>Maklumat dan Hebahan</h1><p class="sub">Saluran perkongsian maklumat berkaitan pembelajaran dan program PPKI.</p><div class="cards">
+   <div class="info"><div class="emoji">📅</div><h3>Takwim aktiviti</h3><p>Tarikh program, cuti dan aktiviti penting.</p></div>
+   <div class="info"><div class="emoji">🎒</div><h3>Persediaan murid</h3><p>Senarai keperluan dan persediaan sebelum aktiviti.</p></div>
+   <div class="info"><div class="emoji">💬</div><h3>Kerjasama ibu bapa</h3><p>Galakan komunikasi dan sokongan pembelajaran di rumah.</p></div>
+  </div></section>
+  <section id="hubungi" class="section"><div class="eyebrow">HUBUNGI KAMI</div><h1>Hubungi PPKI SK Tanjong Bidara</h1><p class="sub">Untuk pertanyaan, sila gunakan saluran rasmi sekolah.</p><div class="panel"><h3>Maklumat perhubungan</h3><div class="placeholder">Alamat sekolah: [Masukkan alamat rasmi]<br>Telefon: [Masukkan nombor telefon sekolah]<br>E-mel: [Masukkan e-mel rasmi sekolah]<br>Facebook / media sosial: [Masukkan pautan rasmi]</div></div></section>
+ </div>
+ <footer>PORTAL PPKI SK TANJONG BIDARA · Reka bentuk pastel moden & mesra murid · 2026</footer>
+</main>
+</div>
+<script>
+function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));if(el)el.classList.add('active');else{const link=[...document.querySelectorAll('.nav a')].find(a=>a.getAttribute('onclick')?.includes("'"+id+"'"));if(link)link.classList.add('active')}window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body></html>
